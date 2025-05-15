@@ -1,11 +1,12 @@
 {
 	"schemaVersion": 1,
 	"id": "classidyes",
-	"version": "${version}",
+	"version": "0.0.1",
 	"name": "Classidyes",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A dye mod inspired by Classiwool",
 	"authors": [
-		"Me!"
+		"FakeZircon",
+		"Fitzs_Space"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

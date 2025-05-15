@@ -11,9 +11,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item TEST = registerItem("test", new Item(new FabricItemSettings()));
+    public static final Item TEST = registerItem("test", new Item(new FabricItemSettings().maxCount(99)));
 
-    private static void addItemToTabGroup(FabricItemGroupEntries entries){
+    private static void addItemToIngredients(FabricItemGroupEntries entries){
         entries.add(TEST);
     }
 
@@ -24,6 +24,6 @@ public class ModItems {
     public static void registerModItems(){
         Classidyes.LOGGER.info("Registering mod items for " + Classidyes.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(ModItems::addItemToTabGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemToIngredients);
     }
 }
