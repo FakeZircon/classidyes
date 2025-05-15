@@ -9,16 +9,14 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
-import net.minecraft.registry.RegistryWrapper;
-
-import java.util.concurrent.CompletableFuture;
 
 public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator generator) {
 		FabricDataGenerator.Pack pack = generator.createPack();
 		pack.addProvider(ModelGenerator::new);
-		pack.addProvider(ClassidyesLangProvider::new);
+		pack.addProvider(ClassidyesCALangProvider::new);
+		pack.addProvider(ClassidyesUSLangProvider::new);
 	}
 
 	public static class ModelGenerator extends FabricModelProvider {
@@ -37,14 +35,25 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		}
 	}
 
-	public static class ClassidyesLangProvider extends FabricLanguageProvider {
-		private ClassidyesLangProvider(FabricDataOutput dataGenerator){
+	public static class ClassidyesCALangProvider extends FabricLanguageProvider {
+		private ClassidyesCALangProvider(FabricDataOutput dataGenerator){
 			super(dataGenerator, "en_ca");
 		}
 
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
-			translationBuilder.add();
+			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
+		}
+	}
+
+	public static class ClassidyesUSLangProvider extends FabricLanguageProvider {
+		private ClassidyesUSLangProvider(FabricDataOutput dataGenerator){
+			super(dataGenerator, "en_us");
+		}
+
+		@Override
+		public void generateTranslations(TranslationBuilder translationBuilder){
+			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
 		}
 	}
 }
