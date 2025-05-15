@@ -11,7 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item TEST = registerItem("test", new Item(new FabricItemSettings().maxCount(99)));
+    public static final Item TEST = registerItem("test", new Item(new FabricItemSettings()));
 
     private static void addItemToIngredients(FabricItemGroupEntries entries){
         entries.add(TEST);

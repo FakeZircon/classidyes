@@ -1,5 +1,6 @@
 package fakezircon.classidyes;
 
+import fakezircon.classidyes.block.ModBlocks;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -26,7 +27,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
 		@Override
 		public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-			// ...
+			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.TEST_BLOCK, ModBlocks.POTTED_TEST_BLOCK, BlockStateModelGenerator.TintType.NOT_TINTED);
 		}
 
 		@Override
@@ -43,6 +44,8 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
 			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".test_block", "Test Block");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_test_block", "Potted Test Block");
 		}
 	}
 
@@ -54,6 +57,8 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
 			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".test_block", "Test Block");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_test_block", "Potted Test Block");
 		}
 	}
 }
