@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"fakezircon.classidyes.ClassidyesClient"
+		],
+		"fabric-datagen": [
+			"fakezircon.classidyes.ClassidyesDataGenerator"
 		]
 	},
 	"mixins": [
