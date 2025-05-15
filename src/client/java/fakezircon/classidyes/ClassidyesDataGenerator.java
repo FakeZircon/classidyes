@@ -5,6 +5,7 @@ import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -16,6 +17,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator generator) {
 		FabricDataGenerator.Pack pack = generator.createPack();
 		pack.addProvider(ModelGenerator::new);
+		pack.addProvider(BlockLootGen::new);
 		pack.addProvider(ClassidyesCALangProvider::new);
 		pack.addProvider(ClassidyesUSLangProvider::new);
 	}
@@ -27,12 +29,24 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
 		@Override
 		public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.TEST_BLOCK, ModBlocks.POTTED_TEST_BLOCK, BlockStateModelGenerator.TintType.NOT_TINTED);
+			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, BlockStateModelGenerator.TintType.NOT_TINTED);
 		}
 
 		@Override
 		public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 			itemModelGenerator.register(ModItems.TEST, Models.GENERATED);
+		}
+	}
+
+	public static class BlockLootGen extends FabricBlockLootTableProvider {
+		public BlockLootGen(FabricDataOutput dataOutput){
+			super(dataOutput);
+		}
+
+		@Override
+		public void generate(){
+			addDrop(ModBlocks.AQUAMARINE_HYDRANGEA);
+			addPottedPlantDrops(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA);
 		}
 	}
 
@@ -44,8 +58,8 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
 			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".test_block", "Test Block");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_test_block", "Potted Test Block");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".aquamarine_hydrangea", "Aquamarine Hydrangea");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_aquamarine_hydrangea", "Potted Aquamarine Hydrangea");
 		}
 	}
 
@@ -57,8 +71,8 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
 			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".test_block", "Test Block");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_test_block", "Potted Test Block");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".aquamarine_hydrangea", "Aquamarine Hydrangea");
+			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_aquamarine_hydrangea", "Potted Aquamarine Hydrangea");
 		}
 	}
 }

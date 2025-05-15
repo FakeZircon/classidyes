@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "classidyes:block/test_block"
+    "layer0": "classidyes:block/aquamarine_hydrangea"
   }
 }

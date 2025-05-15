@@ -4,10 +4,8 @@ import fakezircon.classidyes.Classidyes;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.*;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -17,14 +15,14 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final Block TEST_BLOCK = registerBlock(
-            new Block(FabricBlockSettings.copyOf(Blocks.POPPY).sounds(BlockSoundGroup.METAL)),
-            "test_block",
+    public static final Block AQUAMARINE_HYDRANGEA = registerBlock(
+            new FlowerBlock(StatusEffects.ABSORPTION, 10, FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().noCollision()),
+            "aquamarine_hydrangea",
             true
     );
-    public static final Block POTTED_TEST_BLOCK = registerBlock(
-            new FlowerPotBlock(TEST_BLOCK, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY).sounds(BlockSoundGroup.METAL)),
-            "potted_test_block",
+    public static final Block POTTED_AQUAMARINE_HYDRANGEA = registerBlock(
+            new FlowerPotBlock(AQUAMARINE_HYDRANGEA, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()),
+            "potted_aquamarine_hydrangea",
             false
     );
 

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "classidyes:block/aquamarine_hydrangea"
+  },
+  "render_type": "cutout"
+}
