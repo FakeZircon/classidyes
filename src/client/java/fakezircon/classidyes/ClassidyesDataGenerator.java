@@ -30,6 +30,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		@Override
 		public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, BlockStateModelGenerator.TintType.NOT_TINTED);
+			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLUE_HEAD_GILLA, ModBlocks.POTTED_BLUE_HEAD_GILLA, BlockStateModelGenerator.TintType.NOT_TINTED);
 		}
 
 		@Override
@@ -47,6 +48,8 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		public void generate(){
 			addDrop(ModBlocks.AQUAMARINE_HYDRANGEA);
 			addPottedPlantDrops(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA);
+			addDrop(ModBlocks.BLUE_HEAD_GILLA);
+			addPottedPlantDrops(ModBlocks.POTTED_BLUE_HEAD_GILLA);
 		}
 	}
 
@@ -57,9 +60,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
-			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".aquamarine_hydrangea", "Aquamarine Hydrangea");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_aquamarine_hydrangea", "Potted Aquamarine Hydrangea");
+			translationHelper(translationBuilder);
 		}
 	}
 
@@ -70,9 +71,16 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
 		@Override
 		public void generateTranslations(TranslationBuilder translationBuilder){
-			translationBuilder.add("item."+Classidyes.MOD_ID + ".test", "Test Item");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".aquamarine_hydrangea", "Aquamarine Hydrangea");
-			translationBuilder.add("block."+Classidyes.MOD_ID + ".potted_aquamarine_hydrangea", "Potted Aquamarine Hydrangea");
+			translationHelper(translationBuilder);
 		}
+	}
+
+	//translation for both en_ca and en_us
+	public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder){
+		transBuilder.add(ModItems.TEST, "Test Item");
+		transBuilder.add(ModBlocks.AQUAMARINE_HYDRANGEA.getTranslationKey(), "Aquamarine Hydrangea");
+		transBuilder.add(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA.getTranslationKey(), "Potted Aquamarine Hydrangea");
+		transBuilder.add(ModBlocks.BLUE_HEAD_GILLA.getTranslationKey(), "Blue Head Gilla");
+		transBuilder.add(ModBlocks.POTTED_BLUE_HEAD_GILLA.getTranslationKey(), "Potted Blue Head Gilla");
 	}
 }

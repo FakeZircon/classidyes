@@ -1,3 +1,5 @@
-// 1.20.1	2025-05-15T17:51:04.5103176	Classidyes/Block Loot Tables
+// 1.20.1	2025-05-15T20:02:47.3915876	Classidyes/Block Loot Tables
 51868182b5ed6eec9084ec6a42b6ba5c0e760195 data\classidyes\loot_tables\blocks\potted_aquamarine_hydrangea.json
 05d68ab930a0abd93d656117f08d97d6505fdae4 data\classidyes\loot_tables\blocks\aquamarine_hydrangea.json
+c376c74174eeece823b9c129f30752a3dd78a3ef data\classidyes\loot_tables\blocks\potted_blue_head_gilla.json
+03bdf0a7f91bd5a833408eaf961463e520787270 data\classidyes\loot_tables\blocks\blue_head_gilla.json

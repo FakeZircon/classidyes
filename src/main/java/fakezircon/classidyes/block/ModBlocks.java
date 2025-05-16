@@ -18,6 +18,8 @@ import net.minecraft.util.Identifier;
 public class ModBlocks {
     public static final Block AQUAMARINE_HYDRANGEA = registerFlower("aquamarine_hydrangea", StatusEffects.ABSORPTION, 200);
     public static final Block POTTED_AQUAMARINE_HYDRANGEA = registerPottedFlower(AQUAMARINE_HYDRANGEA);
+    public static final Block BLUE_HEAD_GILLA = registerFlower("blue_head_gilla", StatusEffects.ABSORPTION, 200);
+    public static final Block POTTED_BLUE_HEAD_GILLA = registerPottedFlower(BLUE_HEAD_GILLA);
 
     public static Block registerBlock(Block block, String name, boolean shouldRegisterItem){
         Identifier id = new Identifier(Classidyes.MOD_ID, name);
