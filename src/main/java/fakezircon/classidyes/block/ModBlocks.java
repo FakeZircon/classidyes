@@ -4,6 +4,7 @@ import fakezircon.classidyes.Classidyes;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
@@ -34,11 +35,13 @@ public class ModBlocks {
 
     //quick register for flowers
     public static Block registerFlower(String name, StatusEffect effect, int duration){
-        return registerBlock(
+        Block flower = registerBlock(
                 new FlowerBlock(effect, duration, FabricBlockSettings.copyOf(Blocks.ALLIUM)),
                 name,
                 true
-        );
+            );
+        CompostingChanceRegistry.INSTANCE.add(flower, 0.65f);
+        return flower;
     }
     //quick register for potted flowers
     public static Block registerPottedFlower(Block flower){
