@@ -31,6 +31,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, BlockStateModelGenerator.TintType.NOT_TINTED);
 			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLUE_HEAD_GILLA, ModBlocks.POTTED_BLUE_HEAD_GILLA, BlockStateModelGenerator.TintType.NOT_TINTED);
+			blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLUE_ORCHID, ModBlocks.POTTED_BLUE_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
 		}
 
 		@Override
@@ -50,6 +51,8 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 			addPottedPlantDrops(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA);
 			addDrop(ModBlocks.BLUE_HEAD_GILLA);
 			addPottedPlantDrops(ModBlocks.POTTED_BLUE_HEAD_GILLA);
+			addDrop(ModBlocks.BLUE_ORCHID);
+			addPottedPlantDrops(ModBlocks.POTTED_BLUE_ORCHID);
 		}
 	}
 
@@ -82,5 +85,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 		transBuilder.add(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA.getTranslationKey(), "Potted Aquamarine Hydrangea");
 		transBuilder.add(ModBlocks.BLUE_HEAD_GILLA.getTranslationKey(), "Blue Head Gilla");
 		transBuilder.add(ModBlocks.POTTED_BLUE_HEAD_GILLA.getTranslationKey(), "Potted Blue Head Gilla");
+		transBuilder.add(ModBlocks.BLUE_ORCHID.getTranslationKey(), "Blue Orchid");
+		transBuilder.add(ModBlocks.POTTED_BLUE_ORCHID.getTranslationKey(), "Potted Blue Orchid");
 	}
 }

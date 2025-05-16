@@ -21,6 +21,8 @@ public class ModBlocks {
     public static final Block POTTED_AQUAMARINE_HYDRANGEA = registerPottedFlower(AQUAMARINE_HYDRANGEA);
     public static final Block BLUE_HEAD_GILLA = registerFlower("blue_head_gilla", StatusEffects.ABSORPTION, 200);
     public static final Block POTTED_BLUE_HEAD_GILLA = registerPottedFlower(BLUE_HEAD_GILLA);
+    public static final Block BLUE_ORCHID = registerFlower("blue_orchid", StatusEffects.ABSORPTION, 200);
+    public static final Block POTTED_BLUE_ORCHID = registerPottedFlower(BLUE_ORCHID);
 
     public static Block registerBlock(Block block, String name, boolean shouldRegisterItem){
         Identifier id = new Identifier(Classidyes.MOD_ID, name);
@@ -40,7 +42,10 @@ public class ModBlocks {
                 name,
                 true
             );
+        //compost value
         CompostingChanceRegistry.INSTANCE.add(flower, 0.65f);
+        //item groups
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register( (itemGroup) -> itemGroup.add(flower.asItem()));
         return flower;
     }
     //quick register for potted flowers
