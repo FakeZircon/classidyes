@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -58,6 +59,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {
             itemModelGenerator.register(ModItems.TEST, Models.GENERATED);
+            itemModelGenerator.register(ModItems.GREEN_RUBY_DYE, Models.GENERATED);
         }
     }
 
@@ -116,16 +118,17 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
     //translation for both en_ca and en_us
     public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder) {
         transBuilder.add(ModItems.TEST, "Test Item");
+        transBuilder.add(ModItems.GREEN_RUBY_DYE, titleGen(ModItems.GREEN_RUBY_DYE));
         transBuilder.add(ModItemGroup.CLASSIDYEITEMS, "Classidye");
         //flower + potted flower name gen
         for (int i = 0; i < flowerList.length; i++) {
-            transBuilder.add(flowerList[i], titleGen(flowerList[i]));
-            transBuilder.add(pottedFlowerList[i], titleGen(pottedFlowerList[i]));
+            transBuilder.add(flowerList[i], titleGen(flowerList[i].asItem()));
+            transBuilder.add(pottedFlowerList[i], titleGen(pottedFlowerList[i].asItem()));
         }
     }
 
-    public static String titleGen(Block block){
-        String name = block.getTranslationKey().split("\\.")[2];
+    public static String titleGen(Item item){
+        String name = item.getTranslationKey().split("\\.")[2];
         return Arrays.stream(name.split("_")).map(word -> word.substring(0, 1).toUpperCase() + word.substring(1)).collect(Collectors.joining(" "));
     }
 }
