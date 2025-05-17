@@ -15,8 +15,11 @@ import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
     //list of flowers
@@ -111,37 +114,12 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
     //translation for both en_ca and en_us
     public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder) {
         transBuilder.add(ModItems.TEST, "Test Item");
-        transBuilder.add(ModBlocks.AQUAMARINE_HYDRANGEA.getTranslationKey(), "Aquamarine Hydrangea");
-        transBuilder.add(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA.getTranslationKey(), "Potted Aquamarine Hydrangea");
-        transBuilder.add(ModBlocks.BLUE_HEAD_GILLA.getTranslationKey(), "Blue Head Gilla");
-        transBuilder.add(ModBlocks.POTTED_BLUE_HEAD_GILLA.getTranslationKey(), "Potted Blue Head Gilla");
-        transBuilder.add(ModBlocks.BLUE_ORCHID.getTranslationKey(), "Blue Orchid");
-        transBuilder.add(ModBlocks.POTTED_BLUE_ORCHID.getTranslationKey(), "Potted Blue Orchid");
-        transBuilder.add(ModBlocks.BLUE_STAR.getTranslationKey(), "Blue Star");
-        transBuilder.add(ModBlocks.POTTED_BLUE_STAR.getTranslationKey(), "Potted Blue Star");
-        transBuilder.add(ModBlocks.CORAL_CHARM.getTranslationKey(), "Coral Charm");
-        transBuilder.add(ModBlocks.POTTED_CORAL_CHARM.getTranslationKey(), "Potted Coral Charm");
-        transBuilder.add(ModBlocks.COSMOS.getTranslationKey(), "Cosmos");
-        transBuilder.add(ModBlocks.POTTED_COSMOS.getTranslationKey(), "Potted Cosmos");
-        transBuilder.add(ModBlocks.CREMON.getTranslationKey(), "Cremon");
-        transBuilder.add(ModBlocks.POTTED_CREMON.getTranslationKey(), "Potted Cremon");
-        transBuilder.add(ModBlocks.CROCUS.getTranslationKey(), "Crocus");
-        transBuilder.add(ModBlocks.POTTED_CROCUS.getTranslationKey(), "Potted Crocus");
-        transBuilder.add(ModBlocks.GREEN_ORCHID.getTranslationKey(), "Green Orchid");
-        transBuilder.add(ModBlocks.POTTED_GREEN_ORCHID.getTranslationKey(), "Potted Green Orchid");
-        transBuilder.add(ModBlocks.HYDRANGEA.getTranslationKey(), "Hydrangea");
-        transBuilder.add(ModBlocks.POTTED_HYDRANGEA.getTranslationKey(), "Potted Hydrangea");
-        transBuilder.add(ModBlocks.ROSE.getTranslationKey(), "Rose");
-        transBuilder.add(ModBlocks.POTTED_ROSE.getTranslationKey(), "Potted Rose");
-        transBuilder.add(ModBlocks.SWEET_WILLIAM.getTranslationKey(), "Sweet William");
-        transBuilder.add(ModBlocks.POTTED_SWEET_WILLIAM.getTranslationKey(), "Potted Sweet William");
-        transBuilder.add(ModBlocks.VIBURNUM.getTranslationKey(), "Viburnum");
-        transBuilder.add(ModBlocks.POTTED_VIBURNUM.getTranslationKey(), "Potted Viburnum");
-        transBuilder.add(ModBlocks.WHITE_CALLA_LILY.getTranslationKey(), "White Calla Lily");
-        transBuilder.add(ModBlocks.POTTED_WHITE_CALLA_LILY.getTranslationKey(), "Potted White Calla Lily");
-        transBuilder.add(ModBlocks.WHITE_CAMELLIA.getTranslationKey(), "White Camellia");
-        transBuilder.add(ModBlocks.POTTED_WHITE_CAMELLIA.getTranslationKey(), "Potted White Camellia");
-        transBuilder.add(ModBlocks.YARROW.getTranslationKey(), "Yarrow");
-        transBuilder.add(ModBlocks.POTTED_YARROW.getTranslationKey(), "Potted Yarrow");
+
+        //flower name gen
+        for (Block flower : flowerList){
+            String name = flower.getTranslationKey().split("\\.")[2];
+            name = Arrays.stream(name.split("_")).map(word -> word.substring(0, 1).toUpperCase() + word.substring(1)).collect(Collectors.joining(" "));
+            transBuilder.add(flower, name);
+        }
     }
 }
