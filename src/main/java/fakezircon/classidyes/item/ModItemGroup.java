@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 import static net.minecraft.registry.RegistryKeys.ITEM_GROUP;
 
 public class ModItemGroup {
+    //this whole thing took way too long. It's not even more complicated than the tutorial methods? Why wouldn't they just say this?
     public static final RegistryKey<ItemGroup> CLASSIDYEITEMS = register("classidye_items");
 
     private static RegistryKey<ItemGroup> register(String id) {
