@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "classidyes:aquamarine_hydrangea",
-    "classidyes:blue_head_gilla",
-    "classidyes:blue_orchid",
-    "classidyes:blue_star",
-    "classidyes:coral_charm",
-    "classidyes:cosmos",
-    "classidyes:cremon",
-    "classidyes:crocus",
-    "classidyes:green_orchid",
-    "classidyes:hydrangea",
     "classidyes:rose",
-    "classidyes:sweet_william",
+    "classidyes:cremon",
+    "classidyes:yarrow",
     "classidyes:viburnum",
-    "classidyes:white_calla_lily",
+    "classidyes:green_orchid",
+    "classidyes:aquamarine_hydrangea",
+    "classidyes:blue_star",
+    "classidyes:blue_orchid",
+    "classidyes:blue_head_gilla",
+    "classidyes:cosmos",
+    "classidyes:crocus",
+    "classidyes:sweet_william",
+    "classidyes:coral_charm",
+    "classidyes:hydrangea",
     "classidyes:white_camellia",
-    "classidyes:yarrow"
+    "classidyes:white_calla_lily"
   ]
 }

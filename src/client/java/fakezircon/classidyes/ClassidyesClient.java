@@ -16,7 +16,6 @@ public class ClassidyesClient implements ClientModInitializer {
         setRenderLayerFlowers(ModBlocks.POTTED_BLUE_HEAD_GILLA);
         setRenderLayerFlowers(ModBlocks.BLUE_ORCHID);
         setRenderLayerFlowers(ModBlocks.POTTED_BLUE_ORCHID);
-
         setRenderLayerFlowers(ModBlocks.BLUE_STAR);
         setRenderLayerFlowers(ModBlocks.POTTED_BLUE_STAR);
         setRenderLayerFlowers(ModBlocks.CORAL_CHARM);

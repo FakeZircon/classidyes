@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
@@ -18,6 +19,14 @@ import net.minecraft.registry.tag.ItemTags;
 import java.util.concurrent.CompletableFuture;
 
 public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
+    //list of flowers
+    static Block[] flowerList = {ModBlocks.ROSE, ModBlocks.CREMON, ModBlocks.YARROW, ModBlocks.VIBURNUM, ModBlocks.GREEN_ORCHID,
+            ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.BLUE_STAR, ModBlocks.BLUE_ORCHID, ModBlocks.BLUE_HEAD_GILLA, ModBlocks.COSMOS, ModBlocks.CROCUS,
+            ModBlocks.SWEET_WILLIAM, ModBlocks.CORAL_CHARM, ModBlocks.HYDRANGEA, ModBlocks.WHITE_CAMELLIA, ModBlocks.WHITE_CALLA_LILY};
+    static Block[] pottedFlowerList = {ModBlocks.POTTED_ROSE, ModBlocks.POTTED_CREMON, ModBlocks.POTTED_YARROW, ModBlocks.POTTED_VIBURNUM, ModBlocks.POTTED_GREEN_ORCHID,
+            ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_BLUE_STAR, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_BLUE_HEAD_GILLA, ModBlocks.POTTED_COSMOS, ModBlocks.POTTED_CROCUS,
+            ModBlocks.POTTED_SWEET_WILLIAM, ModBlocks.POTTED_CORAL_CHARM, ModBlocks.POTTED_HYDRANGEA, ModBlocks.POTTED_WHITE_CAMELLIA, ModBlocks.POTTED_WHITE_CALLA_LILY};
+
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
         FabricDataGenerator.Pack pack = generator.createPack();
@@ -35,23 +44,10 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLUE_HEAD_GILLA, ModBlocks.POTTED_BLUE_HEAD_GILLA, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLUE_ORCHID, ModBlocks.POTTED_BLUE_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
-
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLUE_STAR, ModBlocks.POTTED_BLUE_STAR, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.CORAL_CHARM, ModBlocks.POTTED_CORAL_CHARM, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.COSMOS, ModBlocks.POTTED_COSMOS, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.CREMON, ModBlocks.POTTED_CREMON, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.CROCUS, ModBlocks.POTTED_CROCUS, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.GREEN_ORCHID, ModBlocks.POTTED_GREEN_ORCHID, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.HYDRANGEA, ModBlocks.POTTED_HYDRANGEA, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.ROSE, ModBlocks.POTTED_ROSE, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.SWEET_WILLIAM, ModBlocks.POTTED_SWEET_WILLIAM, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.VIBURNUM, ModBlocks.POTTED_VIBURNUM, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.WHITE_CALLA_LILY, ModBlocks.POTTED_WHITE_CALLA_LILY, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.WHITE_CAMELLIA, ModBlocks.POTTED_WHITE_CAMELLIA, BlockStateModelGenerator.TintType.NOT_TINTED);
-            blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.YARROW, ModBlocks.POTTED_YARROW, BlockStateModelGenerator.TintType.NOT_TINTED);
+            //flower model gen
+            for (int i = 0; i < flowerList.length; i++){
+                blockStateModelGenerator.registerFlowerPotPlant(flowerList[i], pottedFlowerList[i], BlockStateModelGenerator.TintType.NOT_TINTED);
+            }
         }
 
         @Override
@@ -67,39 +63,11 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         public void generate() {
-            addDrop(ModBlocks.AQUAMARINE_HYDRANGEA);
-            addPottedPlantDrops(ModBlocks.POTTED_AQUAMARINE_HYDRANGEA);
-            addDrop(ModBlocks.BLUE_HEAD_GILLA);
-            addPottedPlantDrops(ModBlocks.POTTED_BLUE_HEAD_GILLA);
-            addDrop(ModBlocks.BLUE_ORCHID);
-            addPottedPlantDrops(ModBlocks.POTTED_BLUE_ORCHID);
-
-            addDrop(ModBlocks.BLUE_STAR);
-            addPottedPlantDrops(ModBlocks.POTTED_BLUE_STAR);
-            addDrop(ModBlocks.CORAL_CHARM);
-            addPottedPlantDrops(ModBlocks.POTTED_CORAL_CHARM);
-            addDrop(ModBlocks.COSMOS);
-            addPottedPlantDrops(ModBlocks.POTTED_COSMOS);
-            addDrop(ModBlocks.CREMON);
-            addPottedPlantDrops(ModBlocks.POTTED_CREMON);
-            addDrop(ModBlocks.CROCUS);
-            addPottedPlantDrops(ModBlocks.POTTED_CROCUS);
-            addDrop(ModBlocks.GREEN_ORCHID);
-            addPottedPlantDrops(ModBlocks.POTTED_GREEN_ORCHID);
-            addDrop(ModBlocks.HYDRANGEA);
-            addPottedPlantDrops(ModBlocks.POTTED_HYDRANGEA);
-            addDrop(ModBlocks.ROSE);
-            addPottedPlantDrops(ModBlocks.POTTED_ROSE);
-            addDrop(ModBlocks.SWEET_WILLIAM);
-            addPottedPlantDrops(ModBlocks.POTTED_SWEET_WILLIAM);
-            addDrop(ModBlocks.VIBURNUM);
-            addPottedPlantDrops(ModBlocks.POTTED_VIBURNUM);
-            addDrop(ModBlocks.WHITE_CALLA_LILY);
-            addPottedPlantDrops(ModBlocks.POTTED_WHITE_CALLA_LILY);
-            addDrop(ModBlocks.WHITE_CAMELLIA);
-            addPottedPlantDrops(ModBlocks.POTTED_WHITE_CAMELLIA);
-            addDrop(ModBlocks.YARROW);
-            addPottedPlantDrops(ModBlocks.POTTED_YARROW);
+            //flower and potted flower drop gen
+            for (int i = 0; i < flowerList.length; i++){
+                addDrop(flowerList[i]);
+                addPottedPlantDrops(pottedFlowerList[i]);
+            }
         }
     }
 
@@ -110,25 +78,11 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup arg) {
-            getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS)
-                    .add(ModBlocks.AQUAMARINE_HYDRANGEA.asItem())
-                    .add(ModBlocks.BLUE_HEAD_GILLA.asItem())
-                    .add(ModBlocks.BLUE_ORCHID.asItem())
-
-                    .add(ModBlocks.BLUE_STAR.asItem())
-                    .add(ModBlocks.CORAL_CHARM.asItem())
-                    .add(ModBlocks.COSMOS.asItem())
-                    .add(ModBlocks.CREMON.asItem())
-                    .add(ModBlocks.CROCUS.asItem())
-                    .add(ModBlocks.GREEN_ORCHID.asItem())
-                    .add(ModBlocks.HYDRANGEA.asItem())
-                    .add(ModBlocks.ROSE.asItem())
-                    .add(ModBlocks.SWEET_WILLIAM.asItem())
-                    .add(ModBlocks.VIBURNUM.asItem())
-                    .add(ModBlocks.WHITE_CALLA_LILY.asItem())
-                    .add(ModBlocks.WHITE_CAMELLIA.asItem())
-                    .add(ModBlocks.YARROW.asItem())
-                    .setReplace(false);
+            FabricTagBuilder tagBuilder = getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS);
+            for (Block flower : flowerList) {
+                tagBuilder.add(flower.asItem());
+            }
+            tagBuilder.setReplace(false);
         }
     }
 
@@ -163,7 +117,6 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         transBuilder.add(ModBlocks.POTTED_BLUE_HEAD_GILLA.getTranslationKey(), "Potted Blue Head Gilla");
         transBuilder.add(ModBlocks.BLUE_ORCHID.getTranslationKey(), "Blue Orchid");
         transBuilder.add(ModBlocks.POTTED_BLUE_ORCHID.getTranslationKey(), "Potted Blue Orchid");
-
         transBuilder.add(ModBlocks.BLUE_STAR.getTranslationKey(), "Blue Star");
         transBuilder.add(ModBlocks.POTTED_BLUE_STAR.getTranslationKey(), "Potted Blue Star");
         transBuilder.add(ModBlocks.CORAL_CHARM.getTranslationKey(), "Coral Charm");

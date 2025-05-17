@@ -21,7 +21,6 @@ public class ModBlocks {
     public static final Block POTTED_BLUE_HEAD_GILLA = registerPottedFlower(BLUE_HEAD_GILLA);
     public static final Block BLUE_ORCHID = registerFlower("blue_orchid", StatusEffects.ABSORPTION, 200);
     public static final Block POTTED_BLUE_ORCHID = registerPottedFlower(BLUE_ORCHID);
-
     public static final Block BLUE_STAR = registerFlower("blue_star", StatusEffects.ABSORPTION, 200);
     public static final Block POTTED_BLUE_STAR = registerPottedFlower(BLUE_STAR);
     public static final Block CORAL_CHARM = registerFlower("coral_charm", StatusEffects.ABSORPTION, 200);
