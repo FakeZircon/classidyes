@@ -1,6 +1,7 @@
 package fakezircon.classidyes;
 
 import fakezircon.classidyes.block.ModBlocks;
+import fakezircon.classidyes.item.ModItemGroup;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -20,6 +21,7 @@ public class Classidyes implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		ModItemGroup.initialize();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		LOGGER.info("Hello Fabric world!");

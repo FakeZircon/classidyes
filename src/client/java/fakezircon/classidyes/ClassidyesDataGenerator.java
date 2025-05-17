@@ -1,6 +1,7 @@
 package fakezircon.classidyes;
 
 import fakezircon.classidyes.block.ModBlocks;
+import fakezircon.classidyes.item.ModItemGroup;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -13,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.apache.commons.lang3.text.WordUtils;
@@ -114,10 +116,11 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
     //translation for both en_ca and en_us
     public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder) {
         transBuilder.add(ModItems.TEST, "Test Item");
-
-        //flower name gen
-        for (Block flower : flowerList){
-            transBuilder.add(flower, titleGen(flower));
+        transBuilder.add(ModItemGroup.CLASSIDYEITEMS, "Classidye");
+        //flower + potted flower name gen
+        for (int i = 0; i < flowerList.length; i++) {
+            transBuilder.add(flowerList[i], titleGen(flowerList[i]));
+            transBuilder.add(pottedFlowerList[i], titleGen(pottedFlowerList[i]));
         }
     }
 
