@@ -26,8 +26,8 @@ public class ModItems {
         return Registry.register(Registries.ITEM, new Identifier(Classidyes.MOD_ID, name), item);
     }
 
-    private static Item registerDyeItem(String name, DyeColor colour){
-        DyeItem dye = new DyeItem(colour, new FabricItemSettings());
+    private static Item registerDyeItem(String name, ModDyeColor colour){
+        DyeItem dye = new DyeItem(colour.get(), new FabricItemSettings());
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register( (itemGroup) -> itemGroup.addBefore(Items.BOWL, dye));
         ItemGroupEvents.modifyEntriesEvent(ModItemGroup.CLASSIDYEITEMS).register( (itemGroup) -> itemGroup.add(dye));
         return Registry.register(Registries.ITEM, new Identifier(Classidyes.MOD_ID, name), dye);

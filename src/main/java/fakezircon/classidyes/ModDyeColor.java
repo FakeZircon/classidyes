@@ -3,6 +3,7 @@ package fakezircon.classidyes;
 import com.google.common.base.Preconditions;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.MapColor;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.function.ValueLists;
 import org.jetbrains.annotations.Contract;
@@ -127,6 +128,11 @@ public enum ModDyeColor implements StringIdentifiable {
     @Override
     public String asString() {
         return this.name;
+    }
+
+    // get dye colour implemented via mixin, allows accessing in code for creating dye items
+    public DyeColor get(){
+        return DyeColor.valueOf(this.name());
     }
 }
 
