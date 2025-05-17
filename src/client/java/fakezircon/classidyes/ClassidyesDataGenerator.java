@@ -117,9 +117,12 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         //flower name gen
         for (Block flower : flowerList){
-            String name = flower.getTranslationKey().split("\\.")[2];
-            name = Arrays.stream(name.split("_")).map(word -> word.substring(0, 1).toUpperCase() + word.substring(1)).collect(Collectors.joining(" "));
-            transBuilder.add(flower, name);
+            transBuilder.add(flower, titleGen(flower));
         }
+    }
+
+    public static String titleGen(Block block){
+        String name = block.getTranslationKey().split("\\.")[2];
+        return Arrays.stream(name.split("_")).map(word -> word.substring(0, 1).toUpperCase() + word.substring(1)).collect(Collectors.joining(" "));
     }
 }
