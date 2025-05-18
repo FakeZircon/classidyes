@@ -23,7 +23,7 @@ public class DyeColorsMixin {
         throw new AssertionError();
     }
 
-    @Inject(method = "<init>", at = @At(value = "FIELD", target = ""))
+    @Inject(method = "<init>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/DyeColor;$VALUES:[Lnet/minecraft/world/item/DyeColor;", shift = At.Shift.AFTER))
     private void init(CallbackInfo info) {
         // This code is injected into the start of MinecraftServer.loadWorld()V
     }
