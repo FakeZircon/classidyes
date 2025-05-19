@@ -25,6 +25,9 @@
 		],
 		"fabric-datagen": [
 			"fakezircon.classidyes.ClassidyesDataGenerator"
+		],
+		"mm:early_risers": [
+			"fakezircon.classidyes.ModDyeAdder"
 		]
 	},
 	"mixins": [
