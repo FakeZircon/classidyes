@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item TEST = registerItem("test", new Item(new FabricItemSettings()));
-    //public static final Item GREEN_RUBY_DYE = registerDyeItem("green_ruby_dye", ModDyeColor.CHARTREUSE);
+    public static final Item GREEN_RUBY_DYE = registerDyeItem("green_ruby_dye", ModDyeColor.CHARTREUSE);
 
     private static void addItemToIngredients(FabricItemGroupEntries entries){
         entries.add(TEST);
