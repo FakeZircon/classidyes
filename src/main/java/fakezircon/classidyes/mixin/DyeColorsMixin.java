@@ -1,30 +1,35 @@
 package fakezircon.classidyes.mixin;
 
+import fakezircon.classidyes.ModDyeColor;
 import net.minecraft.block.MapColor;
 import net.minecraft.util.DyeColor;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Mixin(DyeColor.class)
-public class DyeColorsMixin {
+@Unique
+public abstract class DyeColorsMixin {
     @Shadow
-    @Mutable
     @Final
+    @Mutable
     private static DyeColor[] $VALUES;
 
+    private static final DyeColor CHARTREUSE = dyeColorAdd$AddColor("CHARTREUSE",ModDyeColor.CHARTREUSE);
+
     @Invoker("<init>")
-    public static DyeColor newColor(int id, String name, int color, MapColor mapColor, int fireworkColor, int signColor){
+    public static DyeColor dyeColorAdd$invokeInit(String internal_name, int internal_ordinal, int id, String name, int color, MapColor mapColor, int fireworkColor, int signColor){
         throw new AssertionError();
     }
 
-    @Inject(method = "<init>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/DyeColor;$VALUES:[Lnet/minecraft/world/item/DyeColor;", shift = At.Shift.AFTER))
-    private void init(CallbackInfo info) {
-        // This code is injected into the start of MinecraftServer.loadWorld()V
+    private static DyeColor dyeColorAdd$AddColor(String internal_name, ModDyeColor new_color) {
+        ArrayList<DyeColor> colour_list = new ArrayList<DyeColor>(Arrays.asList(DyeColorsMixin.$VALUES));
+        DyeColor colour = dyeColorAdd$invokeInit(internal_name, colour_list.get(colour_list.size() -1).ordinal() + 1,
+                new_color.getId(), new_color.getName(), new_color.getColor(), new_color.getMapColor(), new_color.getFireworkColor(), new_color.getSignColor());
+        colour_list.add(colour);
+        $VALUES = colour_list.toArray(new DyeColor[0]);
+        return colour;
     }
 }

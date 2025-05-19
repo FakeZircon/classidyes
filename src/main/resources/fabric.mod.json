@@ -25,6 +25,9 @@
 		],
 		"fabric-datagen": [
 			"fakezircon.classidyes.ClassidyesDataGenerator"
+		],
+		"mm:early_risers": [
+			"com.chocohead.mm.classidyes.EarlyRiser"
 		]
 	},
 	"mixins": [
@@ -38,7 +41,8 @@
 		"fabricloader": ">=0.16.14",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"mm": ">=2.0"
 	},
 	"suggests": {
 		"another-mod": "*"

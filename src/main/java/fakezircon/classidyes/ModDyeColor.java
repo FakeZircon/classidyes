@@ -14,12 +14,14 @@ public enum ModDyeColor implements StringIdentifiable {
     private final float[] colorComponents;
     private final int fireworkColor;
     private final int signColor;
+    private final int color;
 
     private ModDyeColor(int id, String name, int color, MapColor mapColor, int fireworkColor, int signColor) {
         this.id = id;
         this.name = name;
         this.mapColor = mapColor;
         this.signColor = signColor;
+        this.color = color;
         int j = (color & 0xFF0000) >> 16;
         int k = (color & 0xFF00) >> 8;
         int l = (color & 0xFF) >> 0;
@@ -34,6 +36,8 @@ public enum ModDyeColor implements StringIdentifiable {
     public String getName() {
         return this.name;
     }
+
+    public int getColor() { return this.color; }
 
     public float[] getColorComponents() {
         return this.colorComponents;
