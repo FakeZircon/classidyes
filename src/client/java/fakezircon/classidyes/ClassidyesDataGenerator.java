@@ -59,7 +59,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {
             itemModelGenerator.register(ModItems.TEST, Models.GENERATED);
-            itemModelGenerator.register(ModItems.GREEN_RUBY_DYE, Models.GENERATED);
+            //itemModelGenerator.register(ModItems.GREEN_RUBY_DYE, Models.GENERATED);
         }
     }
 
@@ -118,7 +118,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
     //translation for both en_ca and en_us
     public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder) {
         transBuilder.add(ModItems.TEST, "Test Item");
-        transBuilder.add(ModItems.GREEN_RUBY_DYE, titleGen(ModItems.GREEN_RUBY_DYE));
+        //transBuilder.add(ModItems.GREEN_RUBY_DYE, titleGen(ModItems.GREEN_RUBY_DYE));
         transBuilder.add(ModItemGroup.CLASSIDYEITEMS, "Classidye");
         //flower + potted flower name gen
         for (int i = 0; i < flowerList.length; i++) {

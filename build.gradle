@@ -17,7 +17,7 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven {
-		url = uri("https://github.com/Chocohead/Fabric-ASM")
+		url = uri("https://maven.scijava.org/content/repositories/public/")
 	}
 }
 
@@ -47,6 +47,9 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// https://mvnrepository.com/artifact/com.github.Chocohead/Fabric-ASM
+	modImplementation 'com.github.Chocohead:Fabric-ASM:v2.3'
 }
 
 processResources {

@@ -25,13 +25,9 @@
 		],
 		"fabric-datagen": [
 			"fakezircon.classidyes.ClassidyesDataGenerator"
-		],
-		"mm:early_risers": [
-			"com.chocohead.mm.classidyes.EarlyRiser"
 		]
 	},
 	"mixins": [
-		"classidyes.mixins.json",
 		{
 			"config": "classidyes.client.mixins.json",
 			"environment": "client"
