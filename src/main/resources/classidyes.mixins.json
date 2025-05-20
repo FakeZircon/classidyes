@@ -3,7 +3,7 @@
 	"package": "fakezircon.classidyes.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"SheepColourMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
