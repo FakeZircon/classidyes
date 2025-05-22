@@ -38,6 +38,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModelGenerator::new);
         pack.addProvider(BlockLootGen::new);
         pack.addProvider(ModItemTags::new);
+        pack.addProvider(ModBlockTags::new);
         pack.addProvider(ClassidyesCALangProvider::new);
         pack.addProvider(ClassidyesUSLangProvider::new);
     }
@@ -53,9 +54,9 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             for (int i = 0; i < flowerList.length; i++){
                 blockStateModelGenerator.registerFlowerPotPlant(flowerList[i], pottedFlowerList[i], BlockStateModelGenerator.TintType.NOT_TINTED);
             }
-            //wool gen
-            for (Block block : woolBlocks){
-                blockStateModelGenerator.registerSimpleCubeAll(block);
+            //wool + carpet gen
+            for (int i = 0; i < woolBlocks.length; i++){
+                blockStateModelGenerator.registerWoolAndCarpet(woolBlocks[i], carpetBlocks[i]);
             }
         }
 
@@ -80,6 +81,10 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             }
             //wool block gen
             for (Block block : woolBlocks){
+                addDrop(block);
+            }
+            //carpet block gen
+            for (Block block : carpetBlocks){
                 addDrop(block);
             }
         }
@@ -108,8 +113,6 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
                 diTagBuilder.add(item);
             }
             diTagBuilder.setReplace(false);
-
-
         }
     }
 
@@ -132,6 +135,17 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             wTB.setReplace(false);
             dvTB.setReplace(false);
             ovTB.setReplace(false);
+
+            //carpet tags
+            FabricTagBuilder cTB = getOrCreateTagBuilder(BlockTags.WOOL_CARPETS);
+            FabricTagBuilder cssTB = getOrCreateTagBuilder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS);
+            for (Block block : carpetBlocks){
+                dvTB.add(block);
+                cTB.add(block);
+                cssTB.add(block);
+            }
+            cTB.setReplace(false);
+            cssTB.setReplace(false);
         }
     }
 
@@ -169,6 +183,10 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         }
         //wool blocks
         for (Block block : woolBlocks){
+            transBuilder.add(block, titleGen(block.asItem()));
+        }
+        //carpet
+        for (Block block : carpetBlocks){
             transBuilder.add(block, titleGen(block.asItem()));
         }
     }

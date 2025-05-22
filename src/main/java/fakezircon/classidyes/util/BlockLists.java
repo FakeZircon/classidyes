@@ -11,4 +11,5 @@ public class BlockLists {
             ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_BLUE_STAR, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_BLUE_HEAD_GILLA, ModBlocks.POTTED_COSMOS, ModBlocks.POTTED_CROCUS,
             ModBlocks.POTTED_SWEET_WILLIAM, ModBlocks.POTTED_CORAL_CHARM, ModBlocks.POTTED_HYDRANGEA, ModBlocks.POTTED_WHITE_CAMELLIA, ModBlocks.POTTED_WHITE_CALLA_LILY};
     public static Block[] woolBlocks = ModBlocks.WOOL_BLOCKS;
+    public static Block[] carpetBlocks = ModBlocks.CARPETS;
 }

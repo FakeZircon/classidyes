@@ -22,6 +22,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static fakezircon.classidyes.util.MiscLists.colours;
+
 public class ModBlocks {
     public static final Block ROSE = registerFlower("rose", StatusEffects.ABSORPTION, 200);
     public static final Block CREMON = registerFlower("cremon", StatusEffects.ABSORPTION, 200);
@@ -58,6 +60,7 @@ public class ModBlocks {
     public static final Block POTTED_WHITE_CALLA_LILY = registerPottedFlower(WHITE_CALLA_LILY);
 
     public static final Block[] WOOL_BLOCKS = registerWoolBlock();
+    public static final Block[] CARPETS = registerCarpets();
 
     public static Block registerBlock(Block block, String name, boolean shouldRegisterItem){
         Identifier id = new Identifier(Classidyes.MOD_ID, name);
@@ -95,7 +98,7 @@ public class ModBlocks {
 
     public static Block[] registerWoolBlock(){
         ArrayList<Block> newWools = new ArrayList<Block>();
-        for (String colour : MiscLists.colours) {
+        for (String colour : colours) {
             Block wool = registerBlock(
                 new Block(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)),
                 colour + "_wool",
@@ -107,6 +110,22 @@ public class ModBlocks {
         }
         Block[] arr = new Block[newWools.size()];
         return newWools.toArray(arr);
+    }
+
+    public static Block[] registerCarpets(){
+        ArrayList<Block> carpets = new ArrayList<Block>();
+        for (String colour : colours) {
+            Block carpet = registerBlock(
+                    new CarpetBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET)),
+                    colour + "_carpet",
+                    true
+            );
+            carpets.add(carpet);
+            ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register( (itemGroup) -> itemGroup.addBefore(Items.TERRACOTTA, carpet.asItem()));
+            ItemGroupEvents.modifyEntriesEvent(ModItemGroup.CLASSIDYEITEMS).register((itemGroup) -> itemGroup.add(carpet.asItem()));
+        }
+        Block[] arr = new Block[carpets.size()];
+        return carpets.toArray(arr);
     }
 
     public static void registerModBlocks(){
