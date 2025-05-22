@@ -6,7 +6,22 @@ import net.minecraft.util.StringIdentifiable;
 
 public enum ModDyeColor implements StringIdentifiable {
 //    BLACK(15, "black", 1908001, MapColor.BLACK, 1973019, 0); //template
-    CHARTREUSE(18, "chartreuse", 0x97f738, MapColor.EMERALD_GREEN, 0x97f738, 0x97f738);
+    CANDY_APPLE(16, "candy_apple", 0xf73838, MapColor.BRIGHT_RED, 0xf73838, 0xf73838),
+    CLEMENTINE(17, "clementine", 0xf79738, MapColor.ORANGE, 0xf79738, 0xf79738),
+    LEMON(18, "lemon", 0xf7f738, MapColor.YELLOW, 0xf7f738, 0xf7f738),
+    CHARTREUSE(19, "chartreuse", 0x97f738, MapColor.EMERALD_GREEN, 0x97f738, 0x97f738),
+    HARLEQUIN(20, "harlequin", 0x34e834, MapColor.PALE_GREEN, 0x34e834, 0x34e834),
+    SEAFOAM(21, "seafoam", 0x38f797, MapColor.BRIGHT_TEAL, 0x38f797, 0x38f797),
+    ROBINS_EGG(22, "robins_egg", 0x38f7f7, MapColor.DIAMOND_BLUE, 0x38f7f7, 0x38f7f7),
+    DENIM(23, "denim", 0x74b6f7, MapColor.DARK_AQUA, 0x74b6f7, 0x74b6f7),
+    PIGEON_BLUE(24, "pigeon_blue", 0x8686f7, MapColor.TERRACOTTA_BLUE, 0x8686f7, 0x8686f7),
+    SEANCE(25, "seance", 0x9738f7, MapColor.PURPLE, 0x9738f7, 0x9738f7),
+    BYZANTIUM(26, "byzantium", 0xc252f7, MapColor.MAGENTA, 0xc252f7, 0xc252f7),
+    NULL_PINK(27, "null_pink", 0xf738f7, MapColor.MAGENTA, 0xf738f7, 0xf738f7),
+    CERISE(28, "cerise", 0xf73897, MapColor.TERRACOTTA_PINK, 0xf73897, 0xf73897),
+    GUNMETAL(29, "gunmetal", 0x5a5a5a, MapColor.TERRACOTTA_GRAY, 0x5a5a5a, 0x5a5a5a),
+    APPARITION(30, "apparition", 0xa2a2a2, MapColor.TERRACOTTA_LIGHT_GRAY, 0xa2a2a2, 0xa2a2a2),
+    NACRE(31, "nacre", 0xf7f7f7, MapColor.OFF_WHITE, 0xf7f7f7, 0xf7f7f7);
 
     private final int id;
     private final String name;
