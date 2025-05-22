@@ -2,6 +2,8 @@ package fakezircon.classidyes.block;
 
 import fakezircon.classidyes.Classidyes;
 import fakezircon.classidyes.item.ModItemGroup;
+import fakezircon.classidyes.util.MiscLists;
+import net.fabricmc.fabric.api.block.v1.FabricBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -15,6 +17,10 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ModBlocks {
     public static final Block ROSE = registerFlower("rose", StatusEffects.ABSORPTION, 200);
@@ -33,6 +39,7 @@ public class ModBlocks {
     public static final Block HYDRANGEA = registerFlower("hydrangea", StatusEffects.ABSORPTION, 200);
     public static final Block WHITE_CAMELLIA = registerFlower("white_camellia", StatusEffects.ABSORPTION, 200);
     public static final Block WHITE_CALLA_LILY = registerFlower("white_calla_lily", StatusEffects.ABSORPTION, 200);
+
     public static final Block POTTED_ROSE = registerPottedFlower(ROSE);
     public static final Block POTTED_CREMON = registerPottedFlower(CREMON);
     public static final Block POTTED_YARROW = registerPottedFlower(YARROW);
@@ -49,6 +56,8 @@ public class ModBlocks {
     public static final Block POTTED_HYDRANGEA = registerPottedFlower(HYDRANGEA);
     public static final Block POTTED_WHITE_CAMELLIA = registerPottedFlower(WHITE_CAMELLIA);
     public static final Block POTTED_WHITE_CALLA_LILY = registerPottedFlower(WHITE_CALLA_LILY);
+
+    public static final Block[] WOOL_BLOCKS = registerWoolBlock();
 
     public static Block registerBlock(Block block, String name, boolean shouldRegisterItem){
         Identifier id = new Identifier(Classidyes.MOD_ID, name);
@@ -82,6 +91,22 @@ public class ModBlocks {
                 "potted_" + flower.getTranslationKey().split("\\.")[2],
                 false
         );
+    }
+
+    public static Block[] registerWoolBlock(){
+        ArrayList<Block> newWools = new ArrayList<Block>();
+        for (String colour : MiscLists.colours) {
+            Block wool = registerBlock(
+                new Block(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)),
+                colour + "_wool",
+                true
+            );
+            newWools.add(wool);
+            ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register( (itemGroup) -> itemGroup.addBefore(Items.WHITE_CARPET, wool.asItem()));
+            ItemGroupEvents.modifyEntriesEvent(ModItemGroup.CLASSIDYEITEMS).register((itemGroup) -> itemGroup.add(wool.asItem()));
+        }
+        Block[] arr = new Block[newWools.size()];
+        return newWools.toArray(arr);
     }
 
     public static void registerModBlocks(){

@@ -10,4 +10,5 @@ public class BlockLists {
     public static Block[] pottedFlowerList = {ModBlocks.POTTED_ROSE, ModBlocks.POTTED_CREMON, ModBlocks.POTTED_YARROW, ModBlocks.POTTED_VIBURNUM, ModBlocks.POTTED_GREEN_ORCHID,
             ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_BLUE_STAR, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_BLUE_HEAD_GILLA, ModBlocks.POTTED_COSMOS, ModBlocks.POTTED_CROCUS,
             ModBlocks.POTTED_SWEET_WILLIAM, ModBlocks.POTTED_CORAL_CHARM, ModBlocks.POTTED_HYDRANGEA, ModBlocks.POTTED_WHITE_CAMELLIA, ModBlocks.POTTED_WHITE_CALLA_LILY};
+    public static Block[] woolBlocks = ModBlocks.WOOL_BLOCKS;
 }

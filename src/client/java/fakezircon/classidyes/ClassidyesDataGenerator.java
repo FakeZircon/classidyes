@@ -1,6 +1,5 @@
 package fakezircon.classidyes;
 
-import fakezircon.classidyes.block.ModBlocks;
 import fakezircon.classidyes.item.ModItemGroup;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -15,9 +14,9 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -26,8 +25,7 @@ import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-import static fakezircon.classidyes.util.BlockLists.flowerList;
-import static fakezircon.classidyes.util.BlockLists.pottedFlowerList;
+import static fakezircon.classidyes.util.BlockLists.*;
 import static fakezircon.classidyes.util.ItemLists.dyeItems;
 
 public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
@@ -39,7 +37,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = generator.createPack();
         pack.addProvider(ModelGenerator::new);
         pack.addProvider(BlockLootGen::new);
-        pack.addProvider(FlowerTags::new);
+        pack.addProvider(ModItemTags::new);
         pack.addProvider(ClassidyesCALangProvider::new);
         pack.addProvider(ClassidyesUSLangProvider::new);
     }
@@ -54,6 +52,10 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             //flower model gen
             for (int i = 0; i < flowerList.length; i++){
                 blockStateModelGenerator.registerFlowerPotPlant(flowerList[i], pottedFlowerList[i], BlockStateModelGenerator.TintType.NOT_TINTED);
+            }
+            //wool gen
+            for (Block block : woolBlocks){
+                blockStateModelGenerator.registerSimpleCubeAll(block);
             }
         }
 
@@ -76,16 +78,21 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
                 addDrop(flowerList[i]);
                 addPottedPlantDrops(pottedFlowerList[i]);
             }
+            //wool block gen
+            for (Block block : woolBlocks){
+                addDrop(block);
+            }
         }
     }
 
-    public static class FlowerTags extends FabricTagProvider.ItemTagProvider {
-        public FlowerTags(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+    public static class ModItemTags extends FabricTagProvider.ItemTagProvider {
+        public ModItemTags(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
             super(output, completableFuture);
         }
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup arg) {
+            //flower and flowerpot tags
             FabricTagBuilder sfTagBuilder = getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS);
             FabricTagBuilder fTagBuilder = getOrCreateTagBuilder(ItemTags.FLOWERS);
             for (Block flower : flowerList) {
@@ -95,11 +102,36 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             sfTagBuilder.setReplace(false);
             fTagBuilder.setReplace(false);
 
+            //dye item tags
             FabricTagBuilder diTagBuilder = getOrCreateTagBuilder(DYE_ITEMS);
             for (Item item : dyeItems){
                 diTagBuilder.add(item);
             }
             diTagBuilder.setReplace(false);
+
+
+        }
+    }
+
+    public static class ModBlockTags extends FabricTagProvider.BlockTagProvider{
+        public ModBlockTags(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture){
+            super(output, completableFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup arg){
+            //wool block tags
+            FabricTagBuilder wTB = getOrCreateTagBuilder(BlockTags.WOOL);
+            FabricTagBuilder dvTB = getOrCreateTagBuilder(BlockTags.DAMPENS_VIBRATIONS);
+            FabricTagBuilder ovTB = getOrCreateTagBuilder(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
+            for (Block block : woolBlocks){
+                wTB.add(block);
+                dvTB.add(block);
+                ovTB.add(block);
+            }
+            wTB.setReplace(false);
+            dvTB.setReplace(false);
+            ovTB.setReplace(false);
         }
     }
 
@@ -134,6 +166,10 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         for (int i = 0; i < flowerList.length; i++) {
             transBuilder.add(flowerList[i], titleGen(flowerList[i].asItem()));
             transBuilder.add(pottedFlowerList[i], titleGen(pottedFlowerList[i].asItem()));
+        }
+        //wool blocks
+        for (Block block : woolBlocks){
+            transBuilder.add(block, titleGen(block.asItem()));
         }
     }
 
