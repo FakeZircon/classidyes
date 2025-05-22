@@ -8,6 +8,7 @@ import net.minecraft.block.MapColor;
 public class ModDyeAdder implements Runnable {
     @Override
     public void run() {
+        // I think no enum extension, causing hard to trace crashes with other dye mods. Maybe I'll come back to this
         MappingResolver remapper = FabricLoader.getInstance().getMappingResolver();
 
         //get remapped class names for DyeColor and MapColor

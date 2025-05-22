@@ -31,10 +31,7 @@
 		]
 	},
 	"mixins": [
-		{
-			"config": "classidyes.client.mixins.json",
-			"environment": "client"
-		}
+		"classidyes.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

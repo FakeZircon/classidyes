@@ -69,5 +69,3 @@ public enum ModDyeColor implements StringIdentifiable {
         return DyeColor.valueOf(this.name());
     }
 }
-
-//I want to add custom map colours at some point but like, this is a lot... Also not here I guess

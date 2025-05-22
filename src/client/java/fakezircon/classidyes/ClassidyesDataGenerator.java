@@ -16,22 +16,23 @@ import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import org.apache.commons.lang3.text.WordUtils;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import static fakezircon.classidyes.util.BlockLists.flowerList;
+import static fakezircon.classidyes.util.BlockLists.pottedFlowerList;
+import static fakezircon.classidyes.util.ItemLists.dyeItems;
+
 public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
-    //list of flowers
-    static Block[] flowerList = {ModBlocks.ROSE, ModBlocks.CREMON, ModBlocks.YARROW, ModBlocks.VIBURNUM, ModBlocks.GREEN_ORCHID,
-            ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.BLUE_STAR, ModBlocks.BLUE_ORCHID, ModBlocks.BLUE_HEAD_GILLA, ModBlocks.COSMOS, ModBlocks.CROCUS,
-            ModBlocks.SWEET_WILLIAM, ModBlocks.CORAL_CHARM, ModBlocks.HYDRANGEA, ModBlocks.WHITE_CAMELLIA, ModBlocks.WHITE_CALLA_LILY};
-    static Block[] pottedFlowerList = {ModBlocks.POTTED_ROSE, ModBlocks.POTTED_CREMON, ModBlocks.POTTED_YARROW, ModBlocks.POTTED_VIBURNUM, ModBlocks.POTTED_GREEN_ORCHID,
-            ModBlocks.POTTED_AQUAMARINE_HYDRANGEA, ModBlocks.POTTED_BLUE_STAR, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_BLUE_HEAD_GILLA, ModBlocks.POTTED_COSMOS, ModBlocks.POTTED_CROCUS,
-            ModBlocks.POTTED_SWEET_WILLIAM, ModBlocks.POTTED_CORAL_CHARM, ModBlocks.POTTED_HYDRANGEA, ModBlocks.POTTED_WHITE_CAMELLIA, ModBlocks.POTTED_WHITE_CALLA_LILY};
+
+    public static final TagKey<Item> DYE_ITEMS = TagKey.of(RegistryKeys.ITEM, Identifier.of("c", "dyes"));
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
@@ -59,7 +60,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {
             itemModelGenerator.register(ModItems.TEST, Models.GENERATED);
-            itemModelGenerator.register(ModItems.GREEN_RUBY_DYE, Models.GENERATED);
+            itemModelGenerator.register(ModItems.CHARTREUSE_DYE, Models.GENERATED);
         }
     }
 
@@ -85,11 +86,20 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup arg) {
-            FabricTagBuilder tagBuilder = getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS);
+            FabricTagBuilder sfTagBuilder = getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS);
+            FabricTagBuilder fTagBuilder = getOrCreateTagBuilder(ItemTags.FLOWERS);
             for (Block flower : flowerList) {
-                tagBuilder.add(flower.asItem());
+                fTagBuilder.add(flower.asItem());
+                sfTagBuilder.add(flower.asItem());
             }
-            tagBuilder.setReplace(false);
+            sfTagBuilder.setReplace(false);
+            fTagBuilder.setReplace(false);
+
+            FabricTagBuilder diTagBuilder = getOrCreateTagBuilder(DYE_ITEMS);
+            for (Item item : dyeItems){
+                diTagBuilder.add(item);
+            }
+            diTagBuilder.setReplace(false);
         }
     }
 
@@ -118,7 +128,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
     //translation for both en_ca and en_us
     public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder) {
         transBuilder.add(ModItems.TEST, "Test Item");
-        transBuilder.add(ModItems.GREEN_RUBY_DYE, titleGen(ModItems.GREEN_RUBY_DYE));
+        transBuilder.add(ModItems.CHARTREUSE_DYE, titleGen(ModItems.CHARTREUSE_DYE));
         transBuilder.add(ModItemGroup.CLASSIDYEITEMS, "Classidye");
         //flower + potted flower name gen
         for (int i = 0; i < flowerList.length; i++) {

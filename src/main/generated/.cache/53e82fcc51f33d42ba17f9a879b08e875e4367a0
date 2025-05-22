@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-17T13:47:58.6246124	Classidyes/Block Loot Tables
+// 1.20.1	2025-05-21T21:33:25.1198459	Classidyes/Block Loot Tables
 ceb99bc5237eb825bf31b4f187f6de8f49c4dfef data\classidyes\loot_tables\blocks\potted_blue_star.json
 e18e5eefd15fb31477df046e186f6d8a2aada34e data\classidyes\loot_tables\blocks\coral_charm.json
 65aa7f0c099d511ee478905833081069669b9716 data\classidyes\loot_tables\blocks\cosmos.json
@@ -22,8 +22,8 @@ c376c74174eeece823b9c129f30752a3dd78a3ef data\classidyes\loot_tables\blocks\pott
 51868182b5ed6eec9084ec6a42b6ba5c0e760195 data\classidyes\loot_tables\blocks\potted_aquamarine_hydrangea.json
 be46823e2b3d8677e144c6b869f8241ef7903cb3 data\classidyes\loot_tables\blocks\white_camellia.json
 a7e231e0dde4019717a818074d8d7b8419850886 data\classidyes\loot_tables\blocks\yarrow.json
-5f241a419d85ceb5817c7bbd821beaf71e6cf205 data\classidyes\loot_tables\blocks\hydrangea.json
 a733e32eb880c814ed33902c32606301969ed08c data\classidyes\loot_tables\blocks\potted_coral_charm.json
+5f241a419d85ceb5817c7bbd821beaf71e6cf205 data\classidyes\loot_tables\blocks\hydrangea.json
 e8e17c36138a0d76e8fa9e4e2230618195e262c7 data\classidyes\loot_tables\blocks\viburnum.json
 457d99cd0d8133dfb95e21db03d2f847929ade9b data\classidyes\loot_tables\blocks\potted_cosmos.json
 e1365fa9f23b3a4e0fc888b1470c99d13d3f7a3c data\classidyes\loot_tables\blocks\potted_hydrangea.json

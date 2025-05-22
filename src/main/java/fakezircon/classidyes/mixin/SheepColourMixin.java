@@ -29,7 +29,6 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
      */
     @Overwrite
     public DyeColor getColor() {
-        Classidyes.LOGGER.info("Yes I am loaded");
         byte b = dataTracker.get(COLOR);
         return DyeColor.byId(b & 0x7F);
     }
