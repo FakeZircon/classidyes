@@ -17,6 +17,7 @@
     "classidyes:gunmetal_wool",
     "classidyes:apparition_wool",
     "classidyes:nacre_wool",
+    "classidyes:jeb_wool",
     "classidyes:candy_apple_carpet",
     "classidyes:clementine_carpet",
     "classidyes:lemon_carpet",
@@ -32,6 +33,7 @@
     "classidyes:cerise_carpet",
     "classidyes:gunmetal_carpet",
     "classidyes:apparition_carpet",
-    "classidyes:nacre_carpet"
+    "classidyes:nacre_carpet",
+    "classidyes:jeb_carpet"
   ]
 }

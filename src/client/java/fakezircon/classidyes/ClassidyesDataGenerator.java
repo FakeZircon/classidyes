@@ -1,5 +1,6 @@
 package fakezircon.classidyes;
 
+import fakezircon.classidyes.block.ModBlocks;
 import fakezircon.classidyes.item.ModItemGroup;
 import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -58,6 +59,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             for (int i = 0; i < woolBlocks.length; i++){
                 blockStateModelGenerator.registerWoolAndCarpet(woolBlocks[i], carpetBlocks[i]);
             }
+            blockStateModelGenerator.registerWoolAndCarpet(ModBlocks.JEB_WOOL, ModBlocks.JEB_CARPET);
         }
 
         @Override
@@ -83,10 +85,12 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             for (Block block : woolBlocks){
                 addDrop(block);
             }
+            addDrop(ModBlocks.JEB_WOOL);
             //carpet block gen
             for (Block block : carpetBlocks){
                 addDrop(block);
             }
+            addDrop(ModBlocks.JEB_CARPET);
         }
     }
 
@@ -132,6 +136,9 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
                 dvTB.add(block);
                 ovTB.add(block);
             }
+            wTB.add(ModBlocks.JEB_WOOL);
+            dvTB.add(ModBlocks.JEB_WOOL);
+            ovTB.add(ModBlocks.JEB_WOOL);
             wTB.setReplace(false);
             dvTB.setReplace(false);
             ovTB.setReplace(false);
@@ -144,6 +151,9 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
                 cTB.add(block);
                 cssTB.add(block);
             }
+            dvTB.add(ModBlocks.JEB_CARPET);
+            cTB.add(ModBlocks.JEB_CARPET);
+            cssTB.add(ModBlocks.JEB_CARPET);
             cTB.setReplace(false);
             cssTB.setReplace(false);
         }
@@ -185,10 +195,12 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         for (Block block : woolBlocks){
             transBuilder.add(block, titleGen(block.asItem()));
         }
+        transBuilder.add(ModBlocks.JEB_WOOL, "jeb_ Wool");
         //carpet
         for (Block block : carpetBlocks){
             transBuilder.add(block, titleGen(block.asItem()));
         }
+        transBuilder.add(ModBlocks.JEB_CARPET, "jeb_ Carpet");
     }
 
     public static String titleGen(Item item){

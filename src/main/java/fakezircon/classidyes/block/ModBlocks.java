@@ -61,6 +61,8 @@ public class ModBlocks {
 
     public static final Block[] WOOL_BLOCKS = registerWoolBlock();
     public static final Block[] CARPETS = registerCarpets();
+    public static final Block JEB_WOOL = registerBlock(new Block(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)), "jeb_wool", true);
+    public static final Block JEB_CARPET = registerBlock(new CarpetBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET)), "jeb_carpet", true);
 
     public static Block registerBlock(Block block, String name, boolean shouldRegisterItem){
         Identifier id = new Identifier(Classidyes.MOD_ID, name);
@@ -131,6 +133,10 @@ public class ModBlocks {
     public static void registerModBlocks(){
         Classidyes.LOGGER.info("Registering mod blocks for " + Classidyes.MOD_ID);
 
-
+        //item groups for jeb stuff... Make this less weirdly coded later maybe?
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register( (itemGroup) -> itemGroup.addBefore(Items.WHITE_CARPET, JEB_WOOL.asItem()));
+        ItemGroupEvents.modifyEntriesEvent(ModItemGroup.CLASSIDYEITEMS).register((itemGroup) -> itemGroup.addBefore(CARPETS[0], JEB_WOOL.asItem()));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register( (itemGroup) -> itemGroup.addBefore(Items.TERRACOTTA, JEB_CARPET.asItem()));
+        ItemGroupEvents.modifyEntriesEvent(ModItemGroup.CLASSIDYEITEMS).register((itemGroup) -> itemGroup.add(JEB_CARPET.asItem()));
     }
 }
