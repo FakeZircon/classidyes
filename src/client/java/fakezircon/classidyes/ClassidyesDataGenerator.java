@@ -6,15 +6,15 @@ import fakezircon.classidyes.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -24,6 +24,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static fakezircon.classidyes.util.BlockLists.*;
@@ -40,6 +41,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(BlockLootGen::new);
         pack.addProvider(ModItemTags::new);
         pack.addProvider(ModBlockTags::new);
+        pack.addProvider(CraftingGenerator::new);
         pack.addProvider(ClassidyesCALangProvider::new);
         pack.addProvider(ClassidyesUSLangProvider::new);
     }
@@ -156,6 +158,21 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
             cssTB.add(ModBlocks.JEB_CARPET);
             cTB.setReplace(false);
             cssTB.setReplace(false);
+        }
+    }
+
+    public static class CraftingGenerator extends FabricRecipeProvider {
+        private CraftingGenerator(FabricDataOutput dataOutput) {super(dataOutput);}
+
+        @Override
+        public void generate(Consumer<RecipeJsonProvider> exporter){
+            DyeRecipeMaker(ModItems.CHARTREUSE_DYE, ModBlocks.VIBURNUM).offerTo(exporter);
+        }
+
+        public ShapelessRecipeJsonBuilder DyeRecipeMaker(Item result, Block ingredient){
+            return ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, result).input(ingredient)
+                    .criterion(FabricRecipeProvider.hasItem(result), FabricRecipeProvider.conditionsFromItem(result))
+                    .criterion(FabricRecipeProvider.hasItem(ingredient), FabricRecipeProvider.conditionsFromItem(ingredient));
         }
     }
 
