@@ -61,4 +61,14 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
         byte b = dataTracker.get(COLOR);
         dataTracker.set(COLOR, (byte) ((b & 0x7F) | (sheared ? 0x80 : 0)));
     }
+
+    //this is the method for changing how sheep render, something like an inject to check a custom tag would make this work no problem
+//    /**
+//     * @author FakeZircon
+//     * @reason testing things :P
+//     */
+//    @Overwrite
+//    private static float[] getDyedColor(DyeColor color) {
+//        return new float[]{0.3137254F, 0.3725901F, 0.4705882F};
+//    }
 }
