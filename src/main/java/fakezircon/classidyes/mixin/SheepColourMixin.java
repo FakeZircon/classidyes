@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SheepEntity.class)
 public abstract class SheepColourMixin extends AnimalEntity implements Shearable {
@@ -63,12 +67,12 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
     }
 
     //this is the method for changing how sheep render, something like an inject to check a custom tag would make this work no problem
-//    /**
-//     * @author FakeZircon
-//     * @reason testing things :P
-//     */
-//    @Overwrite
-//    private static float[] getDyedColor(DyeColor color) {
-//        return new float[]{0.3137254F, 0.3725901F, 0.4705882F};
-//    }
+    //TODO add a property to sheep for if they are "classidyed" and if so custom loot table and colour render
+    @Inject(method = "getDyedColor", at = @At("HEAD"), cancellable = true)
+    private static void onGetDyedColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
+        if (color == DyeColor.WHITE){
+            cir.setReturnValue(new float[]{0.3137254F, 0.3725901F, 0.4705882F});
+            cir.cancel();
+        }
+    }
 }
