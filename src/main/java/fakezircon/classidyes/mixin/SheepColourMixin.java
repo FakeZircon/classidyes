@@ -22,6 +22,9 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
     @Final
     private static TrackedData<Byte> COLOR;
 
+    //test property
+    private int classiDyed = 0;
+
     private SheepColourMixin() {
         super(EntityType.SHEEP, null);
         throw new AssertionError();
