@@ -1,5 +1,6 @@
 package fakezircon.classidyes;
 
+import com.mojang.serialization.Decoder;
 import fakezircon.classidyes.block.ModBlocks;
 import fakezircon.classidyes.item.ModItemGroup;
 import fakezircon.classidyes.item.ModItems;
@@ -14,7 +15,18 @@ import net.minecraft.data.client.Models;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.context.LootContextType;
+import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -24,6 +36,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -33,12 +46,14 @@ import static fakezircon.classidyes.util.ItemLists.dyeItems;
 public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
     public static final TagKey<Item> DYE_ITEMS = TagKey.of(RegistryKeys.ITEM, Identifier.of("c", "dyes"));
+    public static final Identifier JEB_SHEEP_DROPS = new Identifier(Classidyes.MOD_ID, "entities/jeb_sheep");
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
         FabricDataGenerator.Pack pack = generator.createPack();
         pack.addProvider(ModelGenerator::new);
         pack.addProvider(BlockLootGen::new);
+        pack.addProvider(MobLootGen::new);
         pack.addProvider(ModItemTags::new);
         pack.addProvider(ModBlockTags::new);
         pack.addProvider(CraftingGenerator::new);
@@ -93,6 +108,17 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
                 addDrop(block);
             }
             addDrop(ModBlocks.JEB_CARPET);
+        }
+    }
+
+    public static class MobLootGen extends SimpleFabricLootTableProvider{
+        public MobLootGen(FabricDataOutput output) {
+            super(output, LootContextTypes.ENTITY);
+        }
+
+        @Override
+        public void accept(BiConsumer<Identifier, LootTable.Builder> exporter) {
+
         }
     }
 
