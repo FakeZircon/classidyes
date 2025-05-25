@@ -74,7 +74,7 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
     }
 
     //this is the method for changing how sheep render, something like an inject to check a custom tag would make this work no problem
-    //TODO add a property to sheep for if they are "classidyed" and if so custom loot table and colour render
+    //TODO add a property to sheep for if they are "classidyed" and if so custom colour render
     @Inject(method = "getDyedColor", at = @At("HEAD"), cancellable = true)
     private static void onGetDyedColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
         if (color == DyeColor.WHITE){
@@ -87,7 +87,6 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
     private ItemEntity onSheared(ItemEntity value){
         if (this.hasCustomName()){
             if (this.getCustomName().getString().equals("jeb_")) {
-                //Classidyes.LOGGER.info("jeb_ Sheared!");
                 value.setStack(new ItemStack(ModBlocks.JEB_WOOL));
             }
         }
@@ -101,7 +100,7 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
         if (this.hasCustomName() && this.getCustomName().getString().equals("jeb_")){
             cir.setReturnValue(new Identifier(Classidyes.MOD_ID + ":entities/sheep/jeb"));
             cir.cancel();
-        } else if (this.classiDyed != 0){
+        } else if (this.classiDyed != 0){   //put custom loot tables in here... ugh, gotta make custom loot tables :/
             Classidyes.LOGGER.info("If you see this, something has gone terribly wrong");
         }
     }

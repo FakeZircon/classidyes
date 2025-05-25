@@ -2,8 +2,6 @@ package fakezircon.classidyes.block;
 
 import fakezircon.classidyes.Classidyes;
 import fakezircon.classidyes.item.ModItemGroup;
-import fakezircon.classidyes.util.MiscLists;
-import net.fabricmc.fabric.api.block.v1.FabricBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -17,10 +15,8 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static fakezircon.classidyes.util.MiscLists.colours;
 

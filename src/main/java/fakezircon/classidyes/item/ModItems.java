@@ -3,7 +3,6 @@ package fakezircon.classidyes.item;
 import fakezircon.classidyes.Classidyes;
 import fakezircon.classidyes.ModDyeColor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
