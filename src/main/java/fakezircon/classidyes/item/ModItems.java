@@ -15,12 +15,11 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item TEST = registerItem("test", new Item(new FabricItemSettings()));
     public static final Item CHARTREUSE_DYE = registerDyeItem("chartreuse_dye", ModDyeColor.CHARTREUSE);
 
-    private static void addItemToIngredients(FabricItemGroupEntries entries){
-        entries.add(TEST);
-    }
+//    private static void addItemToIngredients(FabricItemGroupEntries entries){
+//        entries.add(TEST);
+//    }
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(Classidyes.MOD_ID, name), item);
@@ -36,6 +35,6 @@ public class ModItems {
     public static void registerModItems(){
         Classidyes.LOGGER.info("Registering mod items for " + Classidyes.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemToIngredients);
+        //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemToIngredients);
     }
 }

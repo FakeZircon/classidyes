@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -91,5 +92,17 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
             }
         }
         return value;
+    }
+
+    @Inject(method = "getLootTableId", at = @At("HEAD"), cancellable = true)
+    public void onGetLootTableID(CallbackInfoReturnable<Identifier> cir){
+        if(this.isSheared()) return;    //bail out of custom loot tables
+
+        if (this.hasCustomName() && this.getCustomName().getString().equals("jeb_")){
+            cir.setReturnValue(new Identifier(Classidyes.MOD_ID + ":entities/sheep/jeb"));
+            cir.cancel();
+        } else if (this.classiDyed != 0){
+            Classidyes.LOGGER.info("If you see this, something has gone terribly wrong");
+        }
     }
 }
