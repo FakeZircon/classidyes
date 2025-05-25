@@ -3,6 +3,9 @@ package fakezircon.classidyes;
 import net.minecraft.block.MapColor;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.function.ValueLists;
+
+import java.util.function.IntFunction;
 
 public enum ModDyeColor implements StringIdentifiable {
 //    BLACK(15, "black", 1908001, MapColor.BLACK, 1973019, 0); //template
@@ -22,6 +25,9 @@ public enum ModDyeColor implements StringIdentifiable {
     GUNMETAL(29, "gunmetal", 0x5a5a5a, MapColor.TERRACOTTA_GRAY, 0x5a5a5a, 0x5a5a5a),
     APPARITION(30, "apparition", 0xa2a2a2, MapColor.TERRACOTTA_LIGHT_GRAY, 0xa2a2a2, 0xa2a2a2),
     NACRE(31, "nacre", 0xf7f7f7, MapColor.OFF_WHITE, 0xf7f7f7, 0xf7f7f7);
+
+    //technically this defaults to zero but I think it should be fine? A little hacky
+    private static final IntFunction<ModDyeColor> BY_ID = ValueLists.createIdToValueFunction(ModDyeColor::getId, values(), ValueLists.OutOfBoundsHandling.ZERO);
 
     private final int id;
     private final String name;
@@ -68,6 +74,10 @@ public enum ModDyeColor implements StringIdentifiable {
 
     public int getSignColor() {
         return this.signColor;
+    }
+
+    public static ModDyeColor byId(int id) {
+        return (ModDyeColor)BY_ID.apply(id);
     }
 
     public String toString() {

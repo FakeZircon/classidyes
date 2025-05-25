@@ -1,7 +1,9 @@
 package fakezircon.classidyes.mixin;
 
 import fakezircon.classidyes.Classidyes;
+import fakezircon.classidyes.ModDyeColor;
 import fakezircon.classidyes.block.ModBlocks;
+import fakezircon.classidyes.util.sheepDyedInterface;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.Shearable;
@@ -21,13 +23,23 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SheepEntity.class)
-public abstract class SheepColourMixin extends AnimalEntity implements Shearable {
+public abstract class SheepColourMixin extends AnimalEntity implements Shearable, sheepDyedInterface {
     @Shadow
     @Final
     private static TrackedData<Byte> COLOR;
 
-    //test property
-    private int classiDyed = 0;
+    //property + methods for if sheep are classidyed
+    private boolean classiDyed = false;
+
+    @Override
+    public boolean getClassiDyed(){
+        return classiDyed;
+    }
+
+    @Override
+    public void setClassiDyed(boolean status){
+        classiDyed = status;
+    }
 
     private SheepColourMixin() {
         super(EntityType.SHEEP, null);
@@ -44,6 +56,12 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
         return DyeColor.byId(b & 0x7F);
     }
 
+    @Override
+    public ModDyeColor getModColor(){
+        byte b = dataTracker.get(COLOR);
+        return ModDyeColor.byId(b & 0x7F);
+    }
+
     /**
      * @reason Allowing >16 unique dye colors (128)
      * @author ADudeCalledLeo
@@ -52,6 +70,11 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
     public void setColor(DyeColor color) {
         byte b = dataTracker.get(COLOR);
         dataTracker.set(COLOR, (byte) ((b & 0x80) | color.getId() % 0x7F));
+    }
+
+    @Override
+    public void setColor(ModDyeColor color){
+
     }
 
     /**
@@ -77,7 +100,7 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
     //TODO add a property to sheep for if they are "classidyed" and if so custom colour render
     @Inject(method = "getDyedColor", at = @At("HEAD"), cancellable = true)
     private static void onGetDyedColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
-        if (color == DyeColor.WHITE){
+        if (this.classiDyed){
             cir.setReturnValue(new float[]{0.3137254F, 0.3725901F, 0.4705882F});
             cir.cancel();
         }
