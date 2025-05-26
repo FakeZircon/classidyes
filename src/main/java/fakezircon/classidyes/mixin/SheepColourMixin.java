@@ -75,13 +75,23 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
 
     //this is the method for changing how sheep render, something like an inject to check a custom tag would make this work no problem
     //TODO add a property to sheep for if they are "classidyed" and if so custom colour render
-    @Inject(method = "getDyedColor", at = @At("HEAD"), cancellable = true)
-    private static void onGetDyedColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
+//    @Inject(method = "getDyedColor", at = @At("HEAD"), cancellable = true)
+//    private static void onGetDyedColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
+//        if (color == DyeColor.WHITE){
+//            cir.setReturnValue(new float[]{0.3137254F, 0.3725901F, 0.4705882F});
+//            cir.cancel();
+//        }
+//    }
+
+    //this is the last step before sheep color rendering. Not sure how to get the classidye flag through to a static method
+    @Inject(method = "getRgbColor", at = @At("HEAD"), cancellable = true)
+    private static void onGetRgbColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
         if (color == DyeColor.WHITE){
-            cir.setReturnValue(new float[]{0.3137254F, 0.3725901F, 0.4705882F});
+            cir.setReturnValue(new float[]{0.4737254F, 0.3725901F, 0.3105882F});
             cir.cancel();
         }
     }
+
 
     @ModifyVariable(method = "sheared", at = @At("STORE"), ordinal = 0)
     private ItemEntity onSheared(ItemEntity value){
