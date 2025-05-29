@@ -14,7 +14,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item CHARTREUSE_DYE = registerDyeItem("chartreuse_dye", ModDyeColor.CHARTREUSE);
+    public static final Item CHARTREUSE_DYE = registerDyeItem("chartreuse_dye", ModDyeColor.CANDY_APPLE);
 
 //    private static void addItemToIngredients(FabricItemGroupEntries entries){
 //        entries.add(TEST);

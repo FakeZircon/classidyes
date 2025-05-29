@@ -19,6 +19,6 @@ public class ModDyeAdder implements Runnable {
         //          ~~~~~ CALL .build() LAST ~~~~~
         // TODO fix indexing, currently causes race condition with other dye mods
         ClassTinkerers.enumBuilder(dyeColor, int.class, String.class, int.class, mapColor, int.class, int.class)
-                .addEnum("CHARTREUSE", () -> new Object[] {16, "chartreuse", 0x97f738, MapColor.EMERALD_GREEN, 0x97f738, 0x97f738}).build();
+                .addEnum("CANDY_APPLE", () -> new Object[] {16, "candy_apple", 0xf73838, MapColor.EMERALD_GREEN, 0xf73838, 0xf73838}).build();
     }
 }
