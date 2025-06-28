@@ -5,7 +5,9 @@ import fakezircon.classidyes.block.ModBlocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.Shearable;
+import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.ItemStack;
@@ -24,10 +26,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SheepColourMixin extends AnimalEntity implements Shearable {
     @Shadow
     @Final
-    private static TrackedData<Byte> COLOR;
+    private static TrackedData<Byte> COLOR; //somehow need to have a second tracked byte for part2 of RGB565, would allow skipping the map altogether
 
-    //test property
-    private int classiDyed = 0;
+    //second byte of RGB565 based colour storage. Will need to extend read/writeCustomDataToNbt
+    @Final
+    private static TrackedData<Byte> COLOR2 = DataTracker.registerData(SheepColourMixin.class, TrackedDataHandlerRegistry.BYTE);
 
     private SheepColourMixin() {
         super(EntityType.SHEEP, null);
@@ -83,7 +86,7 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
 //        }
 //    }
 
-    //this is the last step before sheep color rendering. Not sure how to get the classidye flag through to a static method
+    //this is the last step before sheep color rendering
     @Inject(method = "getRgbColor", at = @At("HEAD"), cancellable = true)
     private static void onGetRgbColor(DyeColor color, CallbackInfoReturnable<float[]> cir){
         if (color == DyeColor.WHITE){
@@ -110,8 +113,9 @@ public abstract class SheepColourMixin extends AnimalEntity implements Shearable
         if (this.hasCustomName() && this.getCustomName().getString().equals("jeb_")){
             cir.setReturnValue(new Identifier(Classidyes.MOD_ID + ":entities/sheep/jeb"));
             cir.cancel();
-        } else if (this.classiDyed != 0){   //put custom loot tables in here... ugh, gotta make custom loot tables :/
-            Classidyes.LOGGER.info("If you see this, something has gone terribly wrong");
         }
+//        else if (this.classiDyed != 0){   //put custom loot tables in here... ugh, gotta make custom loot tables :/
+//            Classidyes.LOGGER.info("If you see this, something has gone terribly wrong");
+//        }
     }
 }
