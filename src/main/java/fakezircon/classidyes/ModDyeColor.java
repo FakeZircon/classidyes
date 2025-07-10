@@ -6,6 +6,7 @@ import net.minecraft.util.StringIdentifiable;
 
 import static fakezircon.classidyes.util.MiscVals.dyeIndex;
 
+//todo remove this whole enum, superseded by dye-brary but also I don't have a place to put these values yet
 public enum ModDyeColor implements StringIdentifiable {
 //    BLACK(15, "black", 1908001, MapColor.BLACK, 1973019, 0); //template
     CANDY_APPLE(dyeIndex, "candy_apple", 0xf73838, MapColor.BRIGHT_RED, 0xf73838, 0xf73838),

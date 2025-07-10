@@ -3,6 +3,7 @@ package fakezircon.classidyes;
 import fakezircon.classidyes.block.ModBlocks;
 import fakezircon.classidyes.item.ModItemGroup;
 import fakezircon.classidyes.item.ModItems;
+import fakezircon.classidyes.util.ItemLists;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -71,7 +72,10 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-            itemModelGenerator.register(ModItems.CHARTREUSE_DYE, Models.GENERATED);
+            //gen all dye item models
+            for (Item item : dyeItems) {
+                itemModelGenerator.register(item, Models.GENERATED);
+            }
         }
     }
 
@@ -181,7 +185,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         public void generate(Consumer<RecipeJsonProvider> exporter){
-            DyeRecipeMaker(ModItems.CHARTREUSE_DYE, ModBlocks.VIBURNUM).offerTo(exporter);
+            //DyeRecipeMaker(ModItems.CHARTREUSE_DYE, ModBlocks.VIBURNUM).offerTo(exporter);
         }
 
         public ShapelessRecipeJsonBuilder DyeRecipeMaker(Item result, Block ingredient){
@@ -215,7 +219,7 @@ public class ClassidyesDataGenerator implements DataGeneratorEntrypoint {
 
     //translation for both en_ca and en_us
     public static void translationHelper(FabricLanguageProvider.TranslationBuilder transBuilder) {
-        transBuilder.add(ModItems.CHARTREUSE_DYE, titleGen(ModItems.CHARTREUSE_DYE));
+        //transBuilder.add(ModItems.CHARTREUSE_DYE, titleGen(ModItems.CHARTREUSE_DYE));
         transBuilder.add(ModItemGroup.CLASSIDYEITEMS, "Classidye");
         //flower + potted flower name gen
         for (int i = 0; i < flowerList.length; i++) {
