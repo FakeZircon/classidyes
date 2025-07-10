@@ -126,6 +126,17 @@ public class ModBlocks {
         return carpets.toArray(arr);
     }
 
+    public static Block[] registerBanners(){
+        ArrayList<Block> banners = new ArrayList<Block>();
+        for (String colour : colours) {
+            Block banner = registerBlock(
+                    new BannerBlock()
+            )
+        }
+        Block[] arr = new Block[banners.size()];
+        return banners.toArray(arr);
+    }
+
     public static void registerModBlocks(){
         Classidyes.LOGGER.info("Registering mod blocks for " + Classidyes.MOD_ID);
 
