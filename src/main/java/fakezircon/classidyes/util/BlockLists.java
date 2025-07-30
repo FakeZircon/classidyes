@@ -4,6 +4,7 @@ import fakezircon.classidyes.block.ModBlocks;
 import net.minecraft.block.Block;
 
 public class BlockLists {
+    //todo switch to registry system (maybe?)
     public static Block[] flowerList = {ModBlocks.ROSE, ModBlocks.CREMON, ModBlocks.YARROW, ModBlocks.VIBURNUM, ModBlocks.GREEN_ORCHID,
             ModBlocks.AQUAMARINE_HYDRANGEA, ModBlocks.BLUE_STAR, ModBlocks.BLUE_ORCHID, ModBlocks.BLUE_HEAD_GILLA, ModBlocks.COSMOS, ModBlocks.CROCUS,
             ModBlocks.SWEET_WILLIAM, ModBlocks.CORAL_CHARM, ModBlocks.HYDRANGEA, ModBlocks.WHITE_CAMELLIA, ModBlocks.WHITE_CALLA_LILY};
