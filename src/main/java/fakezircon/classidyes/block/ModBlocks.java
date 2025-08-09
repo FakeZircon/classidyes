@@ -129,9 +129,9 @@ public class ModBlocks {
     public static Block[] registerBanners(){
         ArrayList<Block> banners = new ArrayList<Block>();
         for (String colour : colours) {
-            Block banner = registerBlock(
-                    new BannerBlock()
-            )
+//            Block banner = registerBlock(
+//                    new BannerBlock()
+//            )
         }
         Block[] arr = new Block[banners.size()];
         return banners.toArray(arr);
